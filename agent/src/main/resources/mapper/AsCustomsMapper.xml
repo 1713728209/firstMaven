@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsCustomsDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsCustoms">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agentId" jdbcType="INTEGER" property="agentid" />
+    <result column="provinceName" jdbcType="VARCHAR" property="provincename" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+
+    <result column="provinceId" jdbcType="INTEGER" property="provinceid" />
+    <result column="cityId" jdbcType="INTEGER" property="cityid" />
+    <result column="areaId" jdbcType="INTEGER" property="areaid" />
+    <result column="customType" jdbcType="VARCHAR" property="customtype" />
+    <result column="cardType" jdbcType="VARCHAR" property="cardtype" />
+    <result column="customName" jdbcType="VARCHAR" property="customname" />
+    <result column="siteUrl" jdbcType="VARCHAR" property="siteurl" />
+    <result column="customStatus" jdbcType="INTEGER" property="customstatus" />
+    <result column="bossName" jdbcType="VARCHAR" property="bossname" />
+    <result column="cardNum" jdbcType="VARCHAR" property="cardnum" />
+    <result column="companyTel" jdbcType="VARCHAR" property="companytel" />
+    <result column="companyFax" jdbcType="VARCHAR" property="companyfax" />
+    <result column="regDatetime" jdbcType="TIMESTAMP" property="regdatetime" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="companyAddress" jdbcType="VARCHAR" property="companyaddress" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agentId, provinceName, cityName, areaName, customType, cardType, customName, 
+    siteUrl, customStatus, bossName, cardNum, companyTel, companyFax, regDatetime, country, 
+    companyAddress, memo, remark1, remark2, remark3
+  </sql>
+
+  <select id="findAsCustomsList" resultType="AsCustoms">
+    SELECT customs .* FROM as_customs customs
+    <if test="cname !=null and cname !=''">
+       WHERE customs.customName LIKE concat("%",#{cname},"%")
+    </if>
+      ORDER by id
+    <if test="first >=0 and first!=null">
+      limit #{first},#{last}
+    </if>
+  </select>
+
+  <select id="findCount" resultType="Integer" parameterType="String">
+    SELECT count(*) from as_customs
+    <if test="cname !=null and cname !=''">
+      WHERE customName LIKE concat("%",#{cname},"%")
+    </if>
+  </select>
+
+  <update id="updateAscustom" parameterType="AsCustoms">
+    UPDATE as_customs
+    <trim prefix="set" suffixOverrides=",">
+      <if test="customname !=null and customname !=''">
+        customName =#{customname},
+      </if>
+      <if test="customtype !=null and customtype !=''">
+        customType=#{customtype},
+      </if>
+      <if test="siteurl !=null and siteurl !=''">
+        siteUrl=#{siteurl},
+      </if>
+      <if test="customstatus !=null and customstatus !=''">
+        customStatus=#{customstatus},
+      </if>
+      <if test="bossname !=null and bossname !=''">
+        bossName=#{bossname},
+      </if>
+      <if test="cardtype !=null and cardtype !=''">
+        cardType=#{cardtype},
+      </if>
+      <if test="cardnum !=null and cardnum !=''">
+        cardNum=#{cardnum},
+      </if>
+      <if test="country !=null and country !=''">
+        country=#{country},
+      </if>
+      <if test="provinceid !=null and provinceid !=''">
+        provinceId=#{provinceid},
+      </if>
+      <if test="companyfax !=null and companyfax !=''">
+        companyFax=#{companyfax}，
+      </if>
+      <if test="cityid !=null and cityid !=''">
+        cityId=#{cityid},
+      </if>
+      <if test="companytel !=null and companytel !=''">
+        companyTel=#{companytel},
+      </if>
+      <if test="areaid !=null and areaid !=''">
+        areaId=#{areaid},
+      </if>
+      <if test="companyaddress !=null and companyaddress !=''">
+        companyAddress=#{companyaddress},
+      </if>
+      <if test="memo !=null and memo !=''">
+        memo=#{memo}
+      </if>
+    </trim>
+         where id=#{id}
+  </update>
+
+  <update id="updateStatus" >
+    UPDATE as_customs set customStatus=#{status} WHERE id=#{id}
+  </update>
+
+  <insert id="insertAscustom" parameterType="AsCustoms">
+    INSERT INTO as_customs (agentId, customType, cardType, customName,
+    siteUrl, customStatus, bossName, cardNum, companyTel, companyFax, regDatetime, country,
+    companyAddress, memo) VALUES (#{agentid},#{customtype},#{cardtype},#{customname},#{siteurl},
+    #{customstatus},#{bossname},#{cardnum},#{companytel},#{companyfax},
+     #{regdatetime},#{country},#{companyaddress},#{memo});
+  </insert>
+</mapper>

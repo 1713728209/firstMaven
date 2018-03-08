@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.HatProvinceDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.HatProvince">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="provinceID" jdbcType="INTEGER" property="provinceid" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, provinceID, province
+  </sql>
+
+  <select id="findList" resultType="HatProvince">
+    SELECT  * FROM hat_province
+  </select>
+</mapper>

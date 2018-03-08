@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsLogsDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsLogs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="operateDatetime" jdbcType="TIMESTAMP" property="operatedatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jbit.entity.AsLogsWithBLOBs">
+    <result column="operateInfo" jdbcType="LONGVARCHAR" property="operateinfo" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, operateDatetime
+  </sql>
+  <sql id="Blob_Column_List">
+    operateInfo, remark
+  </sql>
+
+  <select id="findPageList" resultType="AsLogs">
+    SELECT
+     logs.*,
+     (SELECT as_user.userName FROM as_user where logs.userId=as_user.id) username
+      from as_logs logs
+    <trim prefix="where" >
+      <if test="userId!=null and userId!=''">
+         userId=#{userId}
+      </if>
+    </trim>
+    <if test="first >=0 and first!=null">
+        limit #{first},#{last}
+    </if>
+  </select>
+
+  <select id="findCount" resultType="Integer" parameterType="Integer">
+    SELECT count(*) from as_logs
+    <trim prefix="where" >
+      <if test="userId!=null and userId!=''">
+         userId=#{userId}
+      </if>
+    </trim>
+  </select>
+</mapper>

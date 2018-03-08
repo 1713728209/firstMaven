@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsUserDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="roleId" jdbcType="INTEGER" property="roleid" />
+    <result column="userCode" jdbcType="VARCHAR" property="usercode" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="creationTime" jdbcType="TIMESTAMP" property="creationtime" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="createdBy" jdbcType="VARCHAR" property="createdby" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="isStart" jdbcType="INTEGER" property="isstart" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roleId, userCode, userName, userPassword, creationTime, lastLoginTime, createdBy, 
+    lastUpdateTime, isStart
+  </sql>
+  <select id="findByLogin" resultType="AsUser">
+    select * from as_user
+      where userCode=#{userCode} and userPassword=#{userPassword}
+  </select>
+
+  <update id="updateLastLoginTime">
+    update as_user set lastlogintime =#{date} where id=#{id}
+  </update>
+
+  <select id="findAll" resultType="AsUser">
+    select * from as_user
+  </select>
+
+  <update id="updatePassword" parameterType="AsUser">
+    update as_user set userPassword =#{userpassword},isStart=#{isstart} where id=#{id}
+  </update>
+
+  <select id="findPageList" resultType="AsUser">
+    SELECT as_user.*,
+     (SELECT as_role.roleName from as_role WHERE as_user.roleId=as_role.id) rolename
+       from as_user
+      <trim prefix="where" suffixOverrides="and">
+         <if test="username!=null and username!=''">
+            as_user.userName LIKE concat('%',#{username},'%')
+         </if>
+        <if test="roleid!=null and roleid!=''">
+           and as_user.roleId =#{roleid}
+        </if>
+        <if test="isstart!=null and isstart!=''">
+           and as_user.isStart =#{isstart}
+        </if>
+      </trim>
+        ORDER by as_user.id ASC
+        <if test="first!=null and first>=0">
+          limit #{first},#{last}
+        </if>
+  </select>
+
+  <select id="findCount" resultType="Integer">
+    SELECT count(*) FROM as_user
+    <trim prefix="where" suffixOverrides="and">
+      <if test="username!=null and username!=''">
+         as_user.userName LIKE concat('%',#{username},'%')
+      </if>
+      <if test="roleid!=null and roleid!=''">
+         and as_user.roleId =#{roleid}
+      </if>
+      <if test="isstart!=null and isstart!=''">
+         and as_user.isStart =#{isstart}
+      </if>
+    </trim>
+  </select>
+
+  <insert id="insertUser" parameterType="AsUser">
+    INSERT into as_user (roleId, userCode, userName, userPassword, creationTime, createdBy,
+     isStart) VALUES (#{roleid},#{usercode},#{username},#{userpassword},#{creationtime},#{createdby},#{isstart});
+  </insert>
+
+  <update id="updateUser" parameterType="AsUser">
+    UPDATE as_user set roleId=#{roleid}, userCode=#{usercode}, userName=#{username}, userPassword=#{userpassword},
+     isStart=#{isstart},lastUpdateTime=#{lastupdatetime} where id=#{id}
+  </update>
+
+  <delete id="deleteUser" parameterType="Integer">
+    DELETE FROM as_user WHERE id=#{id}
+  </delete>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsAccountDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="moneyBak" jdbcType="DOUBLE" property="moneybak" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, money, moneyBak
+  </sql>
+
+  <select id="findMoneyByid" resultType="Double" parameterType="Integer">
+    SELECT money from as_account WHERE userId=#{id}
+  </select>
+
+  <update id="updateMoney">
+    UPDATE as_account SET money=#{money} where userId=#{userId}
+  </update>
+</mapper>

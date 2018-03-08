@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsAccountdetailDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsAccountdetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="systemconfigId" jdbcType="INTEGER" property="systemconfigid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="accountMoney" jdbcType="DOUBLE" property="accountmoney" />
+    <result column="detailDateTime" jdbcType="TIMESTAMP" property="detaildatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jbit.entity.AsAccountdetail">
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, systemconfigId, userId, money, accountMoney, detailDateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    memo
+  </sql>
+
+  <select id="findPageList" resultType="AsAccountdetail">
+    SELECT detail.*,
+      (SELECT config.configTypeName from as_systemconfig config WHERE detail.systemconfigId=config.id) detailtypename,
+      (SELECT as_user.userName from as_user WHERE detail.userId=as_user.id) username,
+      (SELECT as_systemconfig.configTypeName FROM as_systemconfig WHERE detail.systemconfigId=as_systemconfig.id) configtypename
+      from as_accountdetail detail
+    <trim prefix="where" suffixOverrides="and">
+      <if test="detailtype !=null and detailtype!=''">
+        systemconfigId=#{detailtype} and
+      </if>
+      <if test="starttime !=null and starttime!=''">
+        <![CDATA[
+            detailDateTime >#{starttime} and
+         ]]>
+      </if>
+      <if test="endtime!=null and endtime!=''">
+        <![CDATA[
+             detailDateTime <#{endtime}
+         ]]>
+      </if>
+      <if test="userId!=null and userId!=''">
+        userId =#{userId}
+      </if>
+    </trim>
+    <if test="first >=0 and first!=null">
+        limit #{first},#{last}
+    </if>
+  </select>
+
+  <select id="findCount" resultType="Integer">
+    SELECT count(*) FROM as_accountdetail
+    <trim prefix="where" suffixOverrides="and">
+      <if test="detailtype !=null and detailtype!=''">
+         systemconfigId=#{detailtype} and
+      </if>
+      <if test="starttime !=null and starttime!=''">
+        <![CDATA[
+              detailDateTime >#{starttime} and
+         ]]>
+      </if>
+      <if test="endtime!=null and endtime!=''">
+        <![CDATA[
+             detailDateTime <#{endtime} and
+         ]]>
+      </if>
+      <if test="userId!=null and userId!=''">
+             userId =#{userId}
+      </if>
+    </trim>
+  </select>
+
+  <insert id="insertAsAccountdetail" parameterType="AsAccountdetail" >
+    INSERT into as_accountdetail (systemconfigId, userId, money,memo, detailDateTime) VALUES
+    (
+      <trim suffixOverrides=",">
+        <if test="systemconfigid!=null">
+          #{systemconfigid},
+        </if>
+        <if test="userid!=null">
+          #{userid},
+        </if>
+        <if test="money!=null">
+          #{money},
+        </if>
+        <if test="memo!=null">
+         #{memo},
+       </if>
+        <if test="detaildatetime!=null">
+          #{detaildatetime}
+        </if>
+      </trim>
+    );
+  </insert>
+</mapper>

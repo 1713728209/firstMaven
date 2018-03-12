@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsCustomsDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsCustoms">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agentId" jdbcType="INTEGER" property="agentid" />
+    <result column="provinceName" jdbcType="VARCHAR" property="provincename" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+    <result column="customType" jdbcType="VARCHAR" property="customtype" />
+    <result column="cardType" jdbcType="VARCHAR" property="cardtype" />
+    <result column="customName" jdbcType="VARCHAR" property="customname" />
+    <result column="siteUrl" jdbcType="VARCHAR" property="siteurl" />
+    <result column="customStatus" jdbcType="INTEGER" property="customstatus" />
+    <result column="bossName" jdbcType="VARCHAR" property="bossname" />
+    <result column="cardNum" jdbcType="VARCHAR" property="cardnum" />
+    <result column="companyTel" jdbcType="VARCHAR" property="companytel" />
+    <result column="companyFax" jdbcType="VARCHAR" property="companyfax" />
+    <result column="regDatetime" jdbcType="TIMESTAMP" property="regdatetime" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="companyAddress" jdbcType="VARCHAR" property="companyaddress" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agentId, provinceName, cityName, areaName, customType, cardType, customName, 
+    siteUrl, customStatus, bossName, cardNum, companyTel, companyFax, regDatetime, country, 
+    companyAddress, memo, remark1, remark2, remark3
+  </sql>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsUserDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="roleId" jdbcType="INTEGER" property="roleid" />
+    <result column="userCode" jdbcType="VARCHAR" property="usercode" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="creationTime" jdbcType="TIMESTAMP" property="creationtime" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="createdBy" jdbcType="VARCHAR" property="createdby" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="isStart" jdbcType="INTEGER" property="isstart" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roleId, userCode, userName, userPassword, creationTime, lastLoginTime, createdBy, 
+    lastUpdateTime, isStart
+  </sql>
+  <select id="findByLogin" resultType="AsUser">
+    select * from as_user
+      where userCode=#{userCode} and userPassword=#{userPassword}
+  </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsRoleDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsRole">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="creationTime" jdbcType="TIMESTAMP" property="creationtime" />
+    <result column="createdBy" jdbcType="VARCHAR" property="createdby" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+    <result column="isStart" jdbcType="INTEGER" property="isstart" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roleName, creationTime, createdBy, lastUpdateTime, isStart
+  </sql>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsContactsDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsContacts">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="customId" jdbcType="INTEGER" property="customid" />
+    <result column="contactName" jdbcType="VARCHAR" property="contactname" />
+    <result column="contactTel" jdbcType="VARCHAR" property="contacttel" />
+    <result column="contactFax" jdbcType="VARCHAR" property="contactfax" />
+    <result column="contactEmail" jdbcType="VARCHAR" property="contactemail" />
+    <result column="contactRole" jdbcType="VARCHAR" property="contactrole" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, customId, contactName, contactTel, contactFax, contactEmail, contactRole
+  </sql>
+</mapper>

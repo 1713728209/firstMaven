@@ -9,17 +9,17 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <!--mysql-->
-    <mysql_version>5.1.38</mysql_version>
-    <!--log4j-->
-    <log4j_version>1.2.14</log4j_version>
-    <!--slf4j-->
-    <slf4j_version>1.7.12</slf4j_version>
-    <!--mybatis-->
-    <mybatis_version>3.2.4</mybatis_version>
-    <!--spring-->
-    <spring_version>3.2.13.RELEASE</spring_version>
-  </properties>
+  <!--mysql-->
+  <mysql_version>5.1.38</mysql_version>
+  <!--log4j-->
+  <log4j_version>1.2.14</log4j_version>
+  <!--slf4j-->
+  <slf4j_version>1.7.12</slf4j_version>
+  <!--mybatis-->
+  <mybatis_version>3.2.4</mybatis_version>
+  <!--spring-->
+  <spring_version>3.2.13.RELEASE</spring_version>
+</properties>
 
   <dependencies>
     <dependency>
@@ -50,12 +50,12 @@
       <version>${slf4j_version}</version>
     </dependency>
 
-    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
-    <!--<dependency>-->
-      <!--<groupId>org.hibernate</groupId>-->
-      <!--<artifactId>hibernate-core</artifactId>-->
-      <!--<version>3.5.2-Final</version>-->
-    <!--</dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>3.5.2-Final</version>
+    </dependency>
 
 
     <!--mybatis-->

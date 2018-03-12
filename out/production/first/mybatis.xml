@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+       <package name="com.jbit.entity"></package>
+   </typeAliases>
+    <mappers>
+        <mapper resource="mapper/AsAccountdetailMapper.xml" ></mapper>
+        <mapper resource="mapper/AsAccountMapper.xml" ></mapper>
+        <mapper resource="mapper/AsContactsMapper.xml" ></mapper>
+        <mapper resource="mapper/AsCustomsMapper.xml" ></mapper>
+        <mapper resource="mapper/AsFunctionMapper.xml" ></mapper>
+        <mapper resource="mapper/AsKeywordsMapper.xml" ></mapper>
+        <mapper resource="mapper/AsLogsMapper.xml" ></mapper>
+        <mapper resource="mapper/AsRoleMapper.xml" ></mapper>
+        <mapper resource="mapper/AsRolePremissionMapper.xml" ></mapper>
+        <mapper resource="mapper/AsSystemconfigMapper.xml" ></mapper>
+        <mapper resource="mapper/AsUserMapper.xml" ></mapper>
+        <mapper resource="mapper/HatAreaMapper.xml" ></mapper>
+        <mapper resource="mapper/HatCityMapper.xml" ></mapper>
+        <mapper resource="mapper/HatProvinceMapper.xml" ></mapper>
+    </mappers>
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.AsKeywordsDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.AsKeywords">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="systemconfigId" jdbcType="INTEGER" property="systemconfigid" />
+    <result column="customId" jdbcType="INTEGER" property="customid" />
+    <result column="agentId" jdbcType="INTEGER" property="agentid" />
+    <result column="preRegFrozenMoney" jdbcType="DOUBLE" property="preregfrozenmoney" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="openApp" jdbcType="INTEGER" property="openapp" />
+    <result column="appUserName" jdbcType="VARCHAR" property="appusername" />
+    <result column="appPassword" jdbcType="VARCHAR" property="apppassword" />
+    <result column="preRegDatetime" jdbcType="TIMESTAMP" property="preregdatetime" />
+    <result column="preRegPassDatetime" jdbcType="TIMESTAMP" property="preregpassdatetime" />
+    <result column="regDatetime" jdbcType="TIMESTAMP" property="regdatetime" />
+    <result column="regPassDatetime" jdbcType="TIMESTAMP" property="regpassdatetime" />
+    <result column="isPass" jdbcType="INTEGER" property="ispass" />
+    <result column="checkStatus" jdbcType="INTEGER" property="checkstatus" />
+    <result column="isUse" jdbcType="INTEGER" property="isuse" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jbit.entity.AsKeywordsWithBLOBs">
+    <result column="keywords" jdbcType="LONGVARCHAR" property="keywords" />
+    <result column="loginUrl" jdbcType="LONGVARCHAR" property="loginurl" />
+    <result column="iosDownloadUrl" jdbcType="LONGVARCHAR" property="iosdownloadurl" />
+    <result column="androidDownloadUrl" jdbcType="LONGVARCHAR" property="androiddownloadurl" />
+    <result column="codeIosUrl" jdbcType="LONGVARCHAR" property="codeiosurl" />
+    <result column="codeAndroidUrl" jdbcType="LONGVARCHAR" property="codeandroidurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, systemconfigId, customId, agentId, preRegFrozenMoney, price, openApp, appUserName, 
+    appPassword, preRegDatetime, preRegPassDatetime, regDatetime, regPassDatetime, isPass, 
+    checkStatus, isUse
+  </sql>
+  <sql id="Blob_Column_List">
+    keywords, loginUrl, iosDownloadUrl, androidDownloadUrl, codeIosUrl, codeAndroidUrl
+  </sql>
+</mapper>

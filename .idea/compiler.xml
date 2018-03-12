@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="agent" />
+        <module name="commercial" />
+        <module name="edoc" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="agent" target="1.5" />
+      <module name="category" target="1.5" />
+      <module name="commercial" target="1.5" />
+      <module name="edoc" target="1.5" />
+      <module name="first" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

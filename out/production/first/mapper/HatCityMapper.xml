@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbit.dao.HatCityDao">
+  <resultMap id="BaseResultMap" type="com.jbit.entity.HatCity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="provinceID" jdbcType="INTEGER" property="provinceid" />
+    <result column="cityID" jdbcType="INTEGER" property="cityid" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, provinceID, cityID, cityName
+  </sql>
+</mapper>
